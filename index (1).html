@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jorge Peña Contreras · Economist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #fafaf8;
+      --surface: #ffffff;
+      --border: #e8e6e0;
+      --text: #1a1a18;
+      --muted: #6b6b65;
+      --accent: #1d4e89;
+      --accent-light: #e8f0fa;
+      --accent2: #c0392b;
+      --serif: 'Lora', Georgia, serif;
+      --sans: 'DM Sans', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: rgba(250,250,248,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+      padding: 0 2rem;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-brand {
+      font-family: var(--serif);
+      font-size: 1rem;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    /* HERO */
+    .hero {
+      padding: 120px 2rem 80px;
+      max-width: 860px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .hero-text h1 {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 600;
+      line-height: 1.2;
+      color: var(--text);
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-text .title {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--accent);
+      margin-bottom: 1.2rem;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-text .affiliations {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.9;
+      margin-bottom: 1.6rem;
+    }
+
+    .affiliations span {
+      display: block;
+    }
+
+    .affiliations .dot {
+      display: inline-block;
+      width: 5px; height: 5px;
+      background: var(--accent);
+      border-radius: 50%;
+      margin-right: 8px;
+      vertical-align: middle;
+      position: relative;
+      top: -1px;
+    }
+
+    .hero-text p {
+      font-size: 0.97rem;
+      color: var(--muted);
+      max-width: 520px;
+      margin-bottom: 2rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.6rem 1.4rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s;
+      letter-spacing: 0.02em;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+    .btn-primary:hover { background: #163d6e; }
+
+    .btn-outline {
+      border: 1.5px solid var(--border);
+      color: var(--muted);
+      background: transparent;
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+    .photo-frame {
+      width: 160px;
+      height: 200px;
+      border-radius: 6px;
+      overflow: hidden;
+      flex-shrink: 0;
+      border: 1px solid var(--border);
+    }
+
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* DIVIDER */
+    .divider {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    /* SECTIONS */
+    section {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 60px 2rem;
+    }
+
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.6rem;
+    }
+
+    h2 {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 1.2rem;
+    }
+
+    h3.subhead {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin: 2.2rem 0 1rem;
+    }
+
+    /* RESEARCH INTERESTS */
+    .interests {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 2.4rem;
+    }
+
+    .tag {
+      background: var(--accent-light);
+      color: var(--accent);
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 0.3rem 0.85rem;
+      border-radius: 100px;
+    }
+
+    /* PAPERS */
+    .paper-list { display: flex; flex-direction: column; gap: 1.6rem; }
+
+    .paper {
+      border-left: 3px solid var(--border);
+      padding-left: 1.2rem;
+      transition: border-color 0.2s;
+    }
+
+    .paper:hover { border-color: var(--accent); }
+
+    .paper-status {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 0.3rem;
+    }
+
+    .status-conference { color: var(--accent2); }
+    .status-progress { color: #7d6608; }
+    .status-working { color: #2e7d52; }
+
+    .paper h3 {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.25rem;
+      line-height: 1.4;
+    }
+
+    .paper .authors {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 0.3rem;
+    }
+
+    .paper .venue {
+      font-size: 0.82rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .paper-links { margin-top: 0.5rem; display: flex; gap: 0.8rem; }
+
+    .paper-link {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: 0.03em;
+    }
+    .paper-link:hover { text-decoration: underline; }
+
+    /* AFFILIATIONS GRID */
+    .affil-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+
+    .affil-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.2rem 1.4rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .affil-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 2px 12px rgba(29,78,137,0.08);
+    }
+
+    .affil-card .role {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.3rem;
+    }
+
+    .affil-card .org {
+      font-family: var(--serif);
+      font-size: 0.95rem;
+      color: var(--text);
+      font-weight: 600;
+      margin-bottom: 0.15rem;
+    }
+
+    .affil-card .detail {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    /* CONFERENCES */
+    .conf-list { display: flex; flex-direction: column; gap: 1.6rem; }
+
+    .conf {
+      border-left: 3px solid var(--border);
+      padding-left: 1.2rem;
+      transition: border-color 0.2s;
+    }
+    .conf:hover { border-color: var(--accent); }
+
+    .conf .conf-event {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.15rem;
+    }
+
+    .conf .conf-year {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.4rem;
+    }
+
+    .conf .conf-detail {
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    .conf .conf-detail em {
+      font-style: italic;
+      color: var(--text);
+    }
+
+    /* CONTACT */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .contact-info p {
+      font-size: 0.92rem;
+      color: var(--muted);
+      margin-bottom: 1.2rem;
+    }
+
+    .contact-links { display: flex; flex-direction: column; gap: 0.7rem; }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      font-size: 0.88rem;
+      color: var(--text);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .contact-link:hover { color: var(--accent); }
+
+    .contact-link svg { color: var(--muted); flex-shrink: 0; }
+
+    .contact-note {
+      background: var(--accent-light);
+      border: 1px solid rgba(29,78,137,0.15);
+      border-radius: 6px;
+      padding: 1.4rem;
+      font-size: 0.88rem;
+      color: var(--accent);
+      line-height: 1.6;
+    }
+
+    .contact-note strong { display: block; margin-bottom: 0.4rem; font-weight: 600; }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.8rem 2rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 640px) {
+      .hero { grid-template-columns: 1fr; gap: 2rem; }
+      .photo-frame { width: 120px; height: 150px; order: -1; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .nav-links { gap: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-brand">Jorge Peña</a>
+    <ul class="nav-links">
+      <li><a href="#research">Research</a></li>
+      <li><a href="#conferences">Conferences</a></li>
+      <li><a href="#affiliations">Affiliations</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-text">
+      <h1>Jorge Peña</h1>
+      <p class="title">Economist &amp; Researcher</p>
+      <div class="affiliations">
+        <span><span class="dot"></span>Current Research at Ministry of Labor and Employment Promotion, Peru</span>
+        <span><span class="dot"></span>PhD Student, Statistical Science &amp; Engineering – 
+National University of Engineering</span>
+        <span><span class="dot"></span>Master's in Economics – Pontifical Catholic University of Peru</span>
+      </div>
+      <p>
+        My research examines the relationship between labor market and Artificial Intelligence in developing economies,
+        with a focus on occupational exposure, wage inequality in Latin America.
+        I work at the intersection of labor economics, applied econometrics, and AI policy.
+      </p>
+      <div class="hero-actions">
+        <a href="#research" class="btn btn-primary">View Research</a>
+        <a href="cv.pdf" class="btn btn-outline" target="_blank">Download CV</a>
+      </div>
+    </div>
+
+    <div class="photo-frame">
+      <img src="photo.jpg" alt="Jorge Peña Contreras" />
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- RESEARCH -->
+  <section id="research">
+    <p class="section-label">Research</p>
+    <h2>Working Papers &amp; Projects</h2>
+
+    <div style="margin-bottom:2rem;">
+      <p style="font-size:0.9rem; color:var(--muted); margin-bottom:1rem;">Research interests:</p>
+      <div class="interests">
+        <span class="tag">Generative AI &amp; Labor Markets</span>
+        <span class="tag">Wage Inequality</span>
+        <span class="tag">Occupational Exposure</span>
+        <span class="tag">Formal Employment</span>
+        <span class="tag">Applied Econometrics</span>
+        <span class="tag">Latin America</span>
+        <span class="tag">Functional Data Analysis</span>
+        <span class="tag">AI Policy</span>
+      </div>
+    </div>
+
+    <h3 class="subhead">Published</h3>
+    <div class="paper-list">
+
+      <div class="paper">
+        <h3>Exploring the influence of digitalisation on the formalisation process of informal businesses: a comparative strategic management in China and Peru</h3>
+        <p class="authors">J. Peña, A. Flores, J. Heredia</p>
+        <p class="venue">International Journal of Business Environment, 15(3-4), 408–428 · 2024</p>
+      </div>
+
+      <div class="paper">
+        <h3>Pathways to social innovation in Chilean firms: a configurational analysis through the lens of legitimacy theory</h3>
+        <p class="authors">C. Geldes, A. Flores, C. Rubiños, J. Peña, J. Heredia</p>
+        <p class="venue">Journal of Small Business &amp; Entrepreneurship · 2025</p>
+      </div>
+
+      <div class="paper">
+        <h3>Relación de las prácticas ambientales, sociales y de gobernanza (ESG) en el desempeño empresarial: una evidencia empírica para empresas del S&amp;P 500</h3>
+        <p class="authors">A. Flores, C. Rubiños, J.P. Contreras</p>
+        <p class="venue">360: Revista de Ciencias de la Gestión · 2025</p>
+      </div>
+
+      <div class="paper">
+        <h3>Relationship between environmental, social, and governance (ESG) practices and business performance: empirical evidence for S&amp;P 500 companies</h3>
+        <p class="authors">A. Flores, C. Rubiños, J.P. Contreras</p>
+        <p class="venue">360: Revista de Ciencias de la Gestión · 2025</p>
+        <div class="paper-links">
+          <a href="https://doi.org/10.18800/360gestion.202510.011" class="paper-link" target="_blank">[DOI: 10.18800/360gestion.202510.011]</a>
+        </div>
+      </div>
+
+      <div class="paper">
+        <h3>Is Artificial Intelligence Essential or Just an Accelerator for Product Innovation in Manufacturing Firms? A Configurational Approach</h3>
+        <p class="authors">A. Flores, J. McIntyre, C. Rubiños, J.L.P. Contreras</p>
+        <p class="venue">SSRN · 2025</p>
+      </div>
+
+    </div>
+
+    <h3 class="subhead">Under Review</h3>
+    <div class="paper-list">
+
+      <div class="paper">
+        <p class="paper-status status-progress">● Under Review</p>
+        <h3>Navigating Crises in Chinese Entrepreneurship: The Role of Digital Adoption and Innovation Environment in Enhancing Organizational Resilience</h3>
+        <p class="authors">J. Peña, A. Flores, C. Rubiños</p>
+        <p class="venue">Sustainable Technology and Entrepreneurship · 2026</p>
+      </div>
+
+    </div>
+
+    <h3 class="subhead">In Progress</h3>
+    <div class="paper-list">
+
+      <div class="paper">
+        <p class="paper-status status-progress">● In Progress</p>
+        <h3>Who Benefits from Generative AI? Wage Evidence from Peru</h3>
+        <p class="authors">Jorge Peña</p>
+        <p class="venue">
+          Presented at the XVIII Jornadas de Economía Laboral (AEET), Málaga, 2026.
+          Uses ENAHO 2024 microdata, the GBB occupational exposure index, and a Heckman selection model
+          with Bartik shift-share IV to estimate the wage premium associated with GenAI exposure
+          among formal urban workers in Peru.
+        </p>
+      </div>
+
+    </div>
+
+    <p style="font-size:0.88rem; color:var(--muted); margin-top:2rem;">
+      For a full list of publications, visit my
+      <a href="https://scholar.google.com/citations?user=kI9yzxQAAAAJ&hl=es" target="_blank" style="color:var(--accent); font-weight:500;">Google Scholar profile</a>.
+    </p>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CONFERENCES -->
+  <section id="conferences">
+    <p class="section-label">Conferences</p>
+    <h2>Presentations &amp; Talks</h2>
+    <div class="conf-list">
+
+      <div class="conf">
+        <p class="conf-event">RIE — Red de Economía de la Innovación y el Emprendimiento de América Latina y el Caribe</p>
+        <p class="conf-year">9th Conference · BID · 2025</p>
+        <p class="conf-detail">
+          Presented two papers: <em>"Exploring the Role of Digital Technology in Coopetition: Insights from Micro and Small Enterprises in an Emerging Economy"</em>
+          and <em>"Automation and Pathways to Product Innovation: An Analysis of Manufacturing Firms in Developed Economies."</em>
+        </p>
+      </div>
+
+      <div class="conf">
+        <p class="conf-event">APEC-SOM1 (First Senior Officials' Meeting)</p>
+        <p class="conf-year">Asia-Pacific Economic Cooperation · 2024</p>
+        <p class="conf-detail">
+          With Alejandro Flores and Cathy Rubiños, presented a study on the influence of digitalization
+          on business formalization, based on a survey of entrepreneurs across APEC member economies.
+        </p>
+      </div>
+
+      <div class="conf">
+        <p class="conf-event">International Association of Jesuit Business Schools (IAJBS)</p>
+        <p class="conf-year">2021</p>
+        <p class="conf-detail">
+          <em>"Social Innovation and Sustainability Strategies in Firms of Emerging Economies."</em>
+          Study on the relationship between social innovation and business sustainability in an emerging economy.
+        </p>
+      </div>
+
+      <div class="conf">
+        <p class="conf-event">Academy of International Business – LAC</p>
+        <p class="conf-year">2021</p>
+        <p class="conf-detail">
+          <em>"Determinants of Social Innovation in Emerging Economies: The Case of Chile."</em>
+          Study using an fsQCA methodological approach on Chilean firm data.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- AFFILIATIONS -->
+  <section id="affiliations">
+    <p class="section-label">Affiliations</p>
+    <h2>Positions &amp; Education</h2>
+    <div class="affil-grid">
+
+      <div class="affil-card">
+        <p class="role">Current Position</p>
+        <p class="org">DISEL – MTPE Peru</p>
+        <p class="detail">Labor Economist &amp; Researcher<br/>Dirección de Investigación Socio-Económica Laboral</p>
+      </div>
+
+      <div class="affil-card">
+        <p class="role">PhD Candidate</p>
+        <p class="org">UNI-FIEECS</p>
+        <p class="detail">Doctorate in Statistical Science &amp; Engineering (DCIES)<br/>Universidad Nacional de Ingeniería</p>
+      </div>
+
+      <div class="affil-card">
+        <p class="role">Master's in Economics</p>
+        <p class="org">PUCP</p>
+        <p class="detail">Pontificia Universidad Católica del Perú<br/>Advisor: Juan Manuel García Carpio</p>
+      </div>
+
+      <div class="affil-card">
+        <p class="role">Undergraduate</p>
+        <p class="org">UNMSM</p>
+        <p class="detail">Bachelor in Economics<br/>Universidad Nacional Mayor de San Marcos</p>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <p class="section-label">Contact</p>
+    <h2>Get in Touch</h2>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <p>
+          I am open to collaboration on research projects related to AI, labor markets,
+          and applied econometrics in Latin America. Feel free to reach out.
+        </p>
+        <div class="contact-links">
+          <a href="mailto:jorge.pena10@unmsm.edu.pe" class="contact-link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+            jorge.pena10@unmsm.edu.pe
+          </a>
+          <a href="https://www.linkedin.com/in/jorge-pe%C3%B1a-/" class="contact-link" target="_blank">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M8 11v5M8 8v.01M12 16v-5m0 0c0-1.1.9-2 2-2a2 2 0 0 1 2 2v5"/></svg>
+            LinkedIn
+          </a>
+          <a href="https://scholar.google.com/citations?user=kI9yzxQAAAAJ&hl=es" class="contact-link" target="_blank">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            Google Scholar
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-note">
+        <strong>Open to collaboration</strong>
+        I am particularly interested in joint research on GenAI and labor markets
+        in Latin America, occupational exposure measurement, and AI policy for developing economies.
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Jorge Peña · Lima, Peru · <span id="year"></span></p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Smooth active nav highlight
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(link => {
+            link.style.color = link.getAttribute('href') === '#' + entry.target.id
+              ? 'var(--accent)' : '';
+          });
+        }
+      });
+    }, { threshold: 0.4 });
+
+    sections.forEach(s => observer.observe(s));
+  </script>
+</body>
+</html>
